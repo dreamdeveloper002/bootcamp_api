@@ -6,15 +6,17 @@ const dotenv = require('dotenv');
 
 
 //load env vars
-dotenv.config({ path: './config/config.env'});
+dotenv.config({path: '/Users/mac/Desktop/bootcamp_api/config/config.env'});
+
 
 //load models
 const Bootcamp = require('./models/Bootcamp');
 
 
+
 //connect to DB
 
-mongoose.connect(mongoUri, {
+ mongoose.connect(process.env.DEV_MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -23,9 +25,9 @@ mongoose.connect(mongoUri, {
 });
 
 //read JSON files
-const bootcamps = JSON.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, `utgf-8`));
+const bootcamps = JSON.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, `utf-8`));
 
-// const boot = require('./_data/bootcamps.json')
+
 // Import into DB
 
 const importData = async () => {

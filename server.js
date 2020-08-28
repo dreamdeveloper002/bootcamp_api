@@ -7,7 +7,7 @@ const errorHandler = require('./middleware/error')
 
 
 //load env vars
-dotenv.config({path: './bootcamp_api/config/config.env'});
+dotenv.config({path: '/Users/mac/Desktop/bootcamp_api/config/config.env'});
 
 //connect to database
  connectDB()
