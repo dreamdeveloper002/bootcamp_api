@@ -10,39 +10,45 @@ const Bootcamp = require('../models/Bootcamp')
 //@access public 
 
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-   
+ 
    let query;
+   
    //copy req.query
-   const reqQuery = {...req.query}
+   const reqQuery = { ...req.query };
+
+    //fields to exclude
+   const removeFields = ['select', 'sort', 'page', 'limit'];
+
+
+   //loop over removeFields and delete from reqQuery
+   removeFields.forEach(param => delete reqQuery[param])
 
    //create query string
-   let qeuryStr = JSON.stringify(reqQuery);
+   let queryStr = JSON.stringify(reqQuery);
 
-   //fields to exclude
-   const removeField = ['select', 'sort', 'page', 'limit'];
-   
-   //loop over remove fields and delete from reqQuery
-   removeField.forEach(param => delete reqQuery[param]);
 
    //Create operators ($gt, $gte, etc)
-   qeuryStr = qeuryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`)
+   queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+  
   
    //finding resources
-   query = Bootcamp.find(JSON.parse(qeuryStr));
+   query = Bootcamp.find(JSON.parse(queryStr));
+  
 
    //select fields
-   if(req.query.select) {
+   if (req.query.select) {
      const fields = req.query.select.split(',').join(' ');
-     query = query.select(fields)
+     query = query.select(fields);
+   
    }
   
    //sort fields
    if(req.query.sort) {
     const sortBy = req.query.sort.split(',').join(' ');
-    query = query.sort(sortBy)
+     query = query.sort(sortBy)
   } else {
     
-    query = query.sort('-createdAt');
+      query = query.sort('-createdAt');
   }
 
 
@@ -57,6 +63,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
   query = query.skip(startIndex).limit(limit);
  
    const bootcamps = await query;
+   
   
    const pagination = {};
 
