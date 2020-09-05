@@ -17,7 +17,7 @@ const Course = require('./models/Course');
 
 //connect to DB
 
- mongoose.connect(process.env.DEV_MONGO_URI, {
+ mongoose.connect(process.env.LOCAL_DEV_MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
