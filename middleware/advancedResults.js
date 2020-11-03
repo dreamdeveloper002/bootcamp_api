@@ -80,7 +80,7 @@ const advancedResults = (model, populate) => async (req, res, next ) => {
 
 
 
-  res.advancedResult = {
+  res.advancedResults = {
     success: true,
     data: results,
     count: results.length,
