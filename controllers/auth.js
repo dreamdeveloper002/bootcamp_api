@@ -70,7 +70,7 @@ const sendTokenResponse = (user, statusCode, res ) => {
    if( process.env.NODE_ENV === 'production') {
 
     options.httpOnly = true;
-    
+
    }
 
    res
@@ -82,3 +82,20 @@ const sendTokenResponse = (user, statusCode, res ) => {
      user
    })
 }
+
+
+
+//@desc   Get current login user
+//@route  GET  /api/v1/auth/me
+//@access private
+
+exports.getMe = asyncHandler(async (req, res, next) => {
+  
+  const user = await User.findById(req.user.id);
+
+ 
+     res.status(200).json({
+       success : true,
+       data: user
+     });
+});
