@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
-
+const sendEmail = require('../utils/sendEmail');
 
 
 //@desc   Register user
