@@ -40,7 +40,6 @@ const UserSchema = new mongoose.Schema({
 })
 
 // Encrypt password using bcrypt
-
 UserSchema.pre('save', async function(next){
 
   if(!this.isModified('password')) {
@@ -64,8 +63,6 @@ UserSchema.methods.matchPassword = async function(enteredPasword) {
 
 
 //Generate and hash password token
-
-
 UserSchema.methods.getResetPasswordToken = function () {
    // Generate token
 

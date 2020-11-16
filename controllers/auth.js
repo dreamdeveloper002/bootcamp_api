@@ -177,7 +177,6 @@ exports.resetPassword = asyncHandler(async(req, res, next) => {
   user.resetPasswordExpire = undefined;
   
   await user.save(); 
-   
   
     sendTokenResponse(user, 200, res);
   });
@@ -186,7 +185,6 @@ exports.resetPassword = asyncHandler(async(req, res, next) => {
 //@desc      Update users details
 //@route      PUT /api/v1/auth/updatedetails
 //@access     PRIVATE
-
 exports.updateDetails = asyncHandler(async(req, res, next) => {
 
   const fieldsToUpdate = {
@@ -199,7 +197,6 @@ exports.updateDetails = asyncHandler(async(req, res, next) => {
        runValidators: true
  })
  
-     
         res.status(200).json({
             success : true,
             data: user
@@ -211,7 +208,6 @@ exports.updateDetails = asyncHandler(async(req, res, next) => {
 //@desc       Update password
 //@route      PUT /api/v1/auth/updatepassword
 //@access     PRIVATE
-
 exports.updatePassword = asyncHandler(async(req, res, next) => {
 
   const user = await User.findById(req.user.id).select('+password')
@@ -233,7 +229,6 @@ exports.updatePassword = asyncHandler(async(req, res, next) => {
 //@desc   Log user out / clear cookie
 //@route  GET  /api/v1/auth/logout
 //@access private
-
 exports.logout = asyncHandler(async (req, res, next) => {
  
   res.cookie('token', 'none', { expires: new Date(Date.now() + 10 * 1000 ), httpOnly: true });

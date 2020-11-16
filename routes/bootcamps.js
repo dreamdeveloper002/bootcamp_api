@@ -10,6 +10,7 @@ const {getBootcamps,
 
 const Bootcamp = require('../models/Bootcamp')
 const advancedResults = require('../middleware/advancedResults')
+
 //Include other resource router
 const courseRouter = require('./courses');
 const reviewRouter = require('./reviews');

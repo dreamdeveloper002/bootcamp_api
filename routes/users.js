@@ -1,5 +1,9 @@
 const express = require('express');
-const { getUser, getUsers, deleteUser, createUser, updateUser}   = require('../controllers/users');
+const { getUser, 
+       getUsers, 
+       deleteUser, 
+       createUser, 
+       updateUser}   = require('../controllers/users');
 
 
 const User = require('../models/User');
@@ -14,13 +18,13 @@ router.use(authorize('admin'));
 router
 .route('/')
 .get(advancedResults(User), getUsers)
-.post(createUser)
+.post(createUser);
 
 router
 .route('/:id')
 .get(getUser)
 .put(updateUser)
-.delete(deleteUser)
+.delete(deleteUser);
 
 
 
