@@ -7,7 +7,7 @@ const mongoUri = process.env.LOCAL_DEV_MONGO_URI
   
        useNewUrlParser: true,
        useCreateIndex: true,
-       useFindAndModify: false,
+       useCreateIndex: true, 
        useUnifiedTopology: true
    })
 
